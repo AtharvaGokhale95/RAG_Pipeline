@@ -17,16 +17,15 @@ flowchart TD
     subgraph QUERY["Query Pipeline (Online)"]
         B1["User Query"]
         B2["Embed Query\n(same Embedding Model)"]
-        B3["Similarity Search\n(Top-K retrieval)"]
         B4["Context Assembly\n(Retrieved chunks + metadata)"]
         B5["Prompt Construction\n(System prompt + context + query)"]
         B6["LLM\n(e.g. Claude / GPT-4)"]
         B7["Response to User"]
 
-        B1 --> B2 --> B3 --> B4 --> B5 --> B6 --> B7
+        B1 --> B2 --> A5
+        A5 -->|"Top-K chunks"| B4 --> B5 --> B6 --> B7
     end
 
-    A5 -->|"Top-K chunks"| B3
     A4 -.->|"Shared model"| B2
 ```
 
