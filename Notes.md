@@ -1,14 +1,16 @@
 # Notes
 
-Shortcomings of LLMs as compared to RAG:
+## Shortcomings of LLMs (addressed by RAG)
 
-- LLMs have a fixed context window, which limits the amount of information they can process
-- LLMs may not have access to up-to-date information, as they are trained on a static dataset
-- LLMs may struggle with domain-specific knowledge that is not well-represented in their training data
-- LLMs may generate plausible-sounding but incorrect information (hallucinations)
-- LLMs may not be able to provide sources or citations for the information they generate
-- LLMs may not be able to handle complex reasoning tasks that require access to external knowledge or data
-- LLMs may not be able to provide personalized responses based on user-specific data or preferences
+- Fixed context window — limits the amount of information they can process at once
+- No access to up-to-date information — trained on a static dataset
+- Lack of domain-specific knowledge not well-represented in training data
+- Hallucinations — may generate plausible-sounding but incorrect information
+- No source citations — cannot point to where information came from
+- Limited complex reasoning that requires access to external knowledge or data
+- No personalisation based on user-specific data or preferences
+
+---
 
 ## RAG Pipeline Diagram
 
@@ -34,18 +36,22 @@ flowchart LR
     VS --> B2
 ```
 
-Steps:
+---
 
-RAG Pipeline: There are 2 main pipelines in a RAG system:
-    1. Data Ingestion Pipeline: Load, chunk, embed, and store documents into a vector database
-    2. Query Retrieval Pipeline: Embed the user's query, search the vector database, and return relevant chunks to the LLM for processing and generating a response.
-       1. Query — a request or question posed by a user to a system, asking for specific information. For example, typing "best restaurants near me" into a search engine is a query.
-       2. Retrieval — the act of locating and returning the most relevant results or documents that match the query from a stored collection of data.
+## RAG Pipeline: Key Concepts
 
-Data Ingestion: 
+There are 2 main pipelines in a RAG system:
 
-Parsing: Step which defines how to read the unstructured data and chunk it into smaller pieces. This is important because the embedding model has a maximum token limit, and we need to ensure that the chunks of text we create do not exceed this limit. The parsing step also helps to preserve the context of the original data, which can be important for downstream tasks such as search and retrieval
+### 1. Data Ingestion Pipeline
+Load, chunk, embed, and store documents into a vector database.
 
-Embedding: Step which defines how to convert the parsed chunks of text into a numerical representation (vector) that can be stored in a vector database. This step typically involves using a pre-trained language model to generate embeddings for each chunk of text. The resulting vectors can then be stored in a vector database, which allows for efficient search and retrieval based on the similarity of the vectors.
+- **Parsing** — Reads unstructured data and breaks it into smaller chunks. Chunking is necessary because embedding models have a maximum token limit, and smaller chunks also help preserve the context of the original data for search and retrieval.
 
+- **Embedding** — Converts parsed text chunks into numerical vectors using a pre-trained language model. These vectors are stored in a vector database, enabling efficient similarity-based search and retrieval.
 
+### 2. Query Retrieval Pipeline
+Embed the user's query, search the vector database, and return relevant chunks to the LLM to generate a response.
+
+- **Query** — A request or question posed by the user. For example, typing *"best restaurants near me"* into a search engine is a query.
+
+- **Retrieval** — The act of locating and returning the most relevant documents or chunks that match the query from the vector store.
