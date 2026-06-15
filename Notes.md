@@ -14,65 +14,24 @@ Shortcomings of LLMs as compared to RAG:
 
 ```mermaid
 flowchart LR
-    subgraph INGESTION["1. Data Ingestion Pipeline"]
-        A1["Organisational Data\n(PDFs, Docs, DBs, APIs)"]
-        A2["Parsing & Cleaning"]
-        A3["Chunking"]
-        A4["Embedding Model"]
-
-        A1 --> A2 --> A3 --> A4
+    subgraph INGESTION["Data Ingestion Pipeline"]
+        A1["Data Ingest"] --> A2["Data Parsing"] --> A3["Embedding"]
     end
 
-    subgraph VECTOR["2. Vector Store"]
-        V1[("Vector DB\n(Pinecone / Weaviate / pgvector)")]
-    end
+    VS[("Vector Store")]
 
-    subgraph RETRIEVAL["3. Retrieval Pipeline"]
+    subgraph RETRIEVAL["Retrieval Pipeline"]
         B1["User Query"]
-        B2["Embed Query\n(same Embedding Model)"]
-        B3["Context Assembly\n(Top-K chunks)"]
-        B4["Prompt Construction"]
-        B5["LLM\n(Claude / GPT-4)"]
-        B6["Response to User"]
+        B2["Retriever"]
+        B3["LLM"]
+        B4["Output"]
 
         B1 --> B2
-        B3 --> B4 --> B5 --> B6
+        B2 -->|"Context"| B3 --> B4
     end
 
-    A4 -->|"Store embeddings"| V1
-    B2 -->|"Query vector"| V1
-    V1 -->|"Top-K chunks"| B3
-```
-
----
-
-## RAG Pipeline Diagram: Retrieval Pipeline - Passive Lookup (Traditional RAG)
-
-```mermaid
-flowchart TD
-    subgraph INGESTION["Ingestion Pipeline (Offline)"]
-        A1["Organisational Data\n(PDFs, Docs, DBs, Web, APIs)"]
-        A2["Parsing & Cleaning\n(Extract raw text, remove noise)"]
-        A3["Chunking\n(Fixed-size / Semantic / Recursive)"]
-        A4["Embedding Model\n(e.g. text-embedding-3-small)"]
-        A5[("Vector DB\n(Pinecone / Weaviate / pgvector)")]
-
-        A1 --> A2 --> A3 --> A4 --> A5
-    end
-
-    subgraph QUERY["Query Pipeline (Online)"]
-        B1["User Query"]
-        B2["Embed Query\n(same Embedding Model)"]
-        B4["Context Assembly\n(Retrieved chunks + metadata)"]
-        B5["Prompt Construction\n(System prompt + context + query)"]
-        B6["LLM\n(e.g. Claude / GPT-4)"]
-        B7["Response to User"]
-
-        B1 --> B2 --> A5
-        A5 -->|"Top-K chunks"| B4 --> B5 --> B6 --> B7
-    end
-
-    A4 -.->|"Shared model"| B2
+    A3 -->|"Store"| VS
+    VS --> B2
 ```
 
 Steps:
