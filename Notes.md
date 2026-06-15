@@ -10,6 +10,42 @@ Shortcomings of LLMs as compared to RAG:
 - LLMs may not be able to handle complex reasoning tasks that require access to external knowledge or data
 - LLMs may not be able to provide personalized responses based on user-specific data or preferences
 
+## RAG Pipeline Diagram
+
+```mermaid
+flowchart LR
+    subgraph INGESTION["1. Data Ingestion Pipeline"]
+        A1["Organisational Data\n(PDFs, Docs, DBs, APIs)"]
+        A2["Parsing & Cleaning"]
+        A3["Chunking"]
+        A4["Embedding Model"]
+
+        A1 --> A2 --> A3 --> A4
+    end
+
+    subgraph VECTOR["2. Vector Store"]
+        V1[("Vector DB\n(Pinecone / Weaviate / pgvector)")]
+    end
+
+    subgraph RETRIEVAL["3. Retrieval Pipeline"]
+        B1["User Query"]
+        B2["Embed Query\n(same Embedding Model)"]
+        B3["Context Assembly\n(Top-K chunks)"]
+        B4["Prompt Construction"]
+        B5["LLM\n(Claude / GPT-4)"]
+        B6["Response to User"]
+
+        B1 --> B2
+        B3 --> B4 --> B5 --> B6
+    end
+
+    A4 -->|"Store embeddings"| V1
+    B2 -->|"Query vector"| V1
+    V1 -->|"Top-K chunks"| B3
+```
+
+---
+
 ## RAG Pipeline Diagram: Retrieval Pipeline - Passive Lookup (Traditional RAG)
 
 ```mermaid
