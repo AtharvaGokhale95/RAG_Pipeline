@@ -35,7 +35,14 @@ flowchart LR
 ```
 
 Steps:
-Data Ingestion pipeline: Data (Unstructured) -> Parsing -> Embedding -> Vector Store/ Vector DB
+
+RAG Pipeline: There are 2 main pipelines in a RAG system:
+    1. Data Ingestion Pipeline: Load, chunk, embed, and store documents into a vector database
+    2. Query Retrieval Pipeline: Embed the user's query, search the vector database, and return relevant chunks to the LLM for processing and generating a response.
+       1. Query — a request or question posed by a user to a system, asking for specific information. For example, typing "best restaurants near me" into a search engine is a query.
+       2. Retrieval — the act of locating and returning the most relevant results or documents that match the query from a stored collection of data.
+
+Data Ingestion: 
 
 Parsing: Step which defines how to read the unstructured data and chunk it into smaller pieces. This is important because the embedding model has a maximum token limit, and we need to ensure that the chunks of text we create do not exceed this limit. The parsing step also helps to preserve the context of the original data, which can be important for downstream tasks such as search and retrieval
 
