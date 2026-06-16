@@ -82,14 +82,17 @@ There are 2 main pipelines in a RAG system:
 - **Query** — A request or question posed by the user. It is the input to the retrieval pipeline and is typically a natural language string that the user wants to get information about.
 - **Retrieval** — The act of locating and returning the most relevant documents or chunks that match the query from the vector store.
 
-Retriever does the following steps under the hood:
-User Query
-    ↓
-Retriever
-  ├── 1. Embeds the query
-  ├── 2. Searches Vector Store
-  └── 3. Returns top-K chunks as Context
-    ↓
-LLM (receives: original query + context chunks)
-    ↓
-Output (LLM generates a response based on the query and retrieved context)
+- **Retriever** — Does the following steps under the hood:
+
+  ```text
+  User Query
+      ↓
+  Retriever
+    ├── 1. Embeds the query
+    ├── 2. Searches Vector Store
+    └── 3. Returns top-K chunks as Context
+      ↓
+  LLM (receives: original query + context chunks)
+      ↓
+  Output
+  ```
