@@ -1,0 +1,27 @@
+name: rag_pipeline
+channels:
+  - defaults
+dependencies:
+  - python=3.11
+  - pip
+  - pip:
+      - anthropic
+      - langchain
+      - langchain-core
+      - langchain-community
+      - langchain-anthropic
+      - llama-index
+      - sentence-transformers
+      - chromadb
+      - pinecone-client
+      - pypdf
+      - pymupdf
+      - pdfplumber
+      - python-docx
+      - tiktoken
+      - numpy
+      - pandas
+      - jupyter
+      - ipykernel
+      - python-dotenv
+      - tqdm

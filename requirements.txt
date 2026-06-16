@@ -1,0 +1,31 @@
+# LLM / AI
+anthropic
+langchain
+langchain-core
+langchain-community
+langchain-anthropic
+llama-index
+
+# Embeddings & Tokenisation
+sentence-transformers
+tiktoken
+
+# Vector Databases
+chromadb
+pinecone-client
+
+# Document Parsing
+pypdf
+pymupdf
+pdfplumber
+python-docx
+
+# Data & Utilities
+numpy
+pandas
+python-dotenv
+tqdm
+
+# Notebooks
+jupyter
+ipykernel
