@@ -77,7 +77,7 @@ There are 2 main pipelines in a RAG system:
     - **Sentence Transformers** — A popular library that provides pre-trained models for generating high-quality sentence embeddings. It can be used to create vector representations of text chunks.
     - **OpenAI Embeddings** — OpenAI provides embedding models that can be accessed via API. These models can generate embeddings for text chunks, which can then be stored in a vector database
 
-### 2. Query Retrieval Pipeline: Embed the user's query, search the vector database, and return relevant chunks to the LLM to generate a response.
+### 2. Query Retrieval Pipeline: Embed the user's query, search the vector database, and return relevant chunks to the LLM to generate a response
 
 - **Query** — A request or question posed by the user. It is the input to the retrieval pipeline and is typically a natural language string that the user wants to get information about.
 - **Retrieval** — The act of locating and returning the most relevant documents or chunks that match the query from the vector store.
@@ -96,3 +96,11 @@ There are 2 main pipelines in a RAG system:
       ↓
   Output
   ```
+
+- **Augmentation** — The process of combining the retrieved context from the Vector Store with a Prompt (set of instructions) which is used to enhance the generation capabilities of the LLM
+
+- **Retrieval Augmented Generation (RAG)**:
+  - Retrieval: Taking the user query, embedding it, and searching the vector store to retrieve relevant chunks of information.
+  - Augmentation: Combining the retrieved chunks with a prompt to provide context to the LLM, which helps it generate a more accurate and informed response.
+  - Generation: The LLM takes the augmented prompt and generates a response based on that information.
+
