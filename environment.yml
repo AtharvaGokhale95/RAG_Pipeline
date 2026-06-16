@@ -12,6 +12,7 @@ dependencies:
       - langchain-anthropic
       - llama-index
       - sentence-transformers
+      - faiss-cpu
       - chromadb
       - pinecone-client
       - pypdf

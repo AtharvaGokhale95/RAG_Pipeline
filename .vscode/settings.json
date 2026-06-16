@@ -1,5 +1,7 @@
 {
     "cSpell.words": [
+        "chunkers",
+        "embedders",
         "Langchain",
         "Organisational",
         "pgvector"

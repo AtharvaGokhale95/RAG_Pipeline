@@ -8,7 +8,7 @@
 - Hallucinations — may generate plausible-sounding but incorrect information
 - No source citations — cannot point to where information came from
 - Limited complex reasoning that requires access to external knowledge or data
-- No personalisation based on user-specific data or preferences
+- No personalization based on user-specific data or preferences
 
 ---
 
@@ -47,8 +47,7 @@ Think of it as the orchestration layer of your RAG pipeline. For your RAG pipeli
 
 There are 2 main pipelines in a RAG system:
 
-### 1. Data Ingestion Pipeline
-Load, chunk, embed, and store documents into a vector database.
+### 1. Data Ingestion Pipeline: Load, chunk, embed, and store documents into a vector database
 
 - **Steps in Data Ingestion Pipeline**
   - Load Data and Data Parsing
@@ -64,11 +63,18 @@ Load, chunk, embed, and store documents into a vector database.
     - **Metadata (dictionary)** — Information about the document (e.g., file name, No of pages, timestamp,title, author, date) that can be used for filtering and retrieval.
     - **Page Content (string)** — The actual text or data from the document that will be embedded and searched.
   - There are multiple Document Loaders available in LangChain for different file types (PDFs, Word docs, HTML, etc.) that takes the respective file as an input and outputs a Document Structure.
- 
+  
+- **Chunking** — This process take the Document Structure as the input. It breaks down the page content into smaller, manageable pieces called "chunks". Each chunk is again a Document Structure, typically a few sentences or a paragraph. The chunking process also preserves the metadata for each chunk, so you can trace it back to the original document and its context.
+  - Chunking Strategies:
+    - **Fixed-size chunking** — Breaks text into chunks of a specific size (e.g., 500 tokens). This is simple but may split sentences or paragraphs awkwardly.
+    - **Recursive Character Splitting** — A more sophisticated method that tries to split text at natural boundaries (e.g., after a sentence or paragraph) before falling back to characters while ensuring chunks don't exceed a certain size.
+    - **Structure-Aware Chunking** — Uses the document structure to create chunks that align with logical sections (e.g., heading, keeping paragraphs or sections together).
+    - **Semantic chunking** — Uses natural language processing techniques to break text at logical boundaries (e.g., sentence or paragraph breaks) to preserve meaning.
+    - **Overlap chunking** — Creates chunks with overlapping content to ensure important context isn't lost between chunks.
+
 - **Embedding** — Converts parsed text chunks into numerical vectors using a pre-trained language model. These vectors are stored in a vector database, enabling efficient similarity-based search and retrieval.
 
-### 2. Query Retrieval Pipeline
-Embed the user's query, search the vector database, and return relevant chunks to the LLM to generate a response.
+### 2. Query Retrieval Pipeline: Embed the user's query, search the vector database, and return relevant chunks to the LLM to generate a response
 
 - **Query** — A request or question posed by the user. For example, typing *"best restaurants near me"* into a search engine is a query.
 
