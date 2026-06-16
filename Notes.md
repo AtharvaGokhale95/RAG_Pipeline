@@ -40,13 +40,31 @@ flowchart LR
 
 ## RAG Pipeline: Key Concepts
 
+LangChain:
+LangChain is a framework that provides ready-made building blocks for building LLM-powered applications. Instead of writing all the glue code yourself (connecting data loaders → chunkers → embedders → vector stores → LLMs), LangChain gives you pre-built components for each step that work together out of the box.
+
+Think of it as the orchestration layer of your RAG pipeline. For your RAG pipeline, LangChain essentially replaces all the custom glue code between each stage.
+
 There are 2 main pipelines in a RAG system:
 
 ### 1. Data Ingestion Pipeline
 Load, chunk, embed, and store documents into a vector database.
 
-- **Parsing** — Reads unstructured data and breaks it into smaller chunks. Chunking is necessary because embedding models have a maximum token limit, and smaller chunks also help preserve the context of the original data for search and retrieval.
+- **Steps in Data Ingestion Pipeline**
+  - Load Data and Data Parsing
+  - Create the "document structure" (specific to Langchain)
+  - Chunking
+  - Embedding
+  - Store in the vector database
 
+- **Parsing** — Reads unstructured data and performs operations like extracting clean text, removing noise (headers, footers, ads, page numbers), and identifying sections or paragraphs.
+
+- **Document Structure** - It is a kind of a data structure that represents the original document in a way that preserves its context and relationships between different parts. For example, if you have a PDF with multiple sections, the document structure would capture the hierarchy of sections, subsections, and paragraphs.
+  - Core Components of Document Structure:
+    - **Metadata (dictionary)** — Information about the document (e.g., file name, No of pages, timestamp,title, author, date) that can be used for filtering and retrieval.
+    - **Page Content (string)** — The actual text or data from the document that will be embedded and searched.
+  - There are multiple Document Loaders available in LangChain for different file types (PDFs, Word docs, HTML, etc.) that takes the respective file as an input and outputs a Document Structure.
+ 
 - **Embedding** — Converts parsed text chunks into numerical vectors using a pre-trained language model. These vectors are stored in a vector database, enabling efficient similarity-based search and retrieval.
 
 ### 2. Query Retrieval Pipeline
