@@ -4,6 +4,7 @@ langchain
 langchain-core
 langchain-community
 langchain-anthropic
+langchain-groq
 llama-index
 
 # Embeddings & Tokenisation
@@ -14,6 +15,7 @@ tiktoken
 faiss-cpu
 chromadb
 pinecone-client
+typesense
 
 # Document Parsing
 pypdf
@@ -22,7 +24,7 @@ pdfplumber
 python-docx
 
 # Data & Utilities
-numpy
+numpy<2
 pandas
 python-dotenv
 tqdm

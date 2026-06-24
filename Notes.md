@@ -12,7 +12,7 @@
 
 ---
 
-## RAG Pipeline Diagram
+## Traditional RAG Pipeline Diagram
 
 ```mermaid
 flowchart LR

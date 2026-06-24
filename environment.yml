@@ -10,17 +10,22 @@ dependencies:
       - langchain-core
       - langchain-community
       - langchain-anthropic
+      - langchain-groq
       - llama-index
       - sentence-transformers
       - faiss-cpu
       - chromadb
       - pinecone-client
+      - typesense
       - pypdf
       - pymupdf
       - pdfplumber
       - python-docx
       - tiktoken
-      - numpy
+      - torch
+      - torchvision
+      - torchaudio
+      - numpy<2
       - pandas
       - jupyter
       - ipykernel
