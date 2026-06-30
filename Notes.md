@@ -100,7 +100,6 @@ There are 2 main pipelines in a RAG system:
 - **Augmentation** — The process of combining the retrieved context from the Vector Store with a Prompt (set of instructions) which is used to enhance the generation capabilities of the LLM
 
 - **Retrieval Augmented Generation (RAG)**:
-  - Retrieval: Taking the user query, embedding it, and searching the vector store to retrieve relevant chunks of information.
-  - Augmentation: Combining the retrieved chunks with a prompt to provide context to the LLM, which helps it generate a more accurate and informed response.
-  - Generation: The LLM takes the augmented prompt and generates a response based on that information.
-
+  - Retrieval (meaning in plain english: To fetch something from where it's stored): Taking the user query, embedding it, and searching the vector store to retrieve relevant chunks of information.
+  - Augmentation (meaning in plain english: To enhance or add to something to make it better): Combining the retrieved chunks with a prompt to provide context to the LLM, which helps it generate a more accurate and informed response.
+  - Generation: The LLM takes the augmented prompt and generates a response based on that information
