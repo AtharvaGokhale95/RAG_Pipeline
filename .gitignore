@@ -1,0 +1,22 @@
+# Secrets — never commit these
+.env
+.env.local
+.env.*
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.Python
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Vector Store (large local DB, no need to push)
+vector_store/
+
+# macOS
+.DS_Store
+
+# VS Code
+.vscode/
